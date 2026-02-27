@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>API Finder - Options</title>
+  <style>
+    :root { --bg: #0f0f12; --surface: #1a1a1f; --border: #2d2d35; --text: #e4e4e7; --muted: #71717a; --accent: #6366f1; --accent-hover: #818cf8; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 24px; font-size: 14px; line-height: 1.5; }
+    h1 { font-size: 20px; font-weight: 600; margin: 0 0 24px; }
+    section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    section h2 { font-size: 14px; font-weight: 600; margin: 0 0 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    label { display: block; margin-bottom: 8px; }
+    input[type="number"], input[type="text"], textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-size: 14px; }
+    textarea { min-height: 100px; resize: vertical; }
+    .row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); }
+    button { padding: 10px 20px; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; background: var(--accent); color: #fff; }
+    button:hover { background: var(--accent-hover); }
+    button.secondary { background: var(--border); color: var(--text); }
+    button.secondary:hover { background: #3d3d47; }
+    .save-status { margin-top: 16px; color: var(--muted); font-size: 13px; }
+    .hint { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <h1>API Finder - Settings</h1>
+  <section>
+    <h2>Capture</h2>
+    <div class="row">
+      <input type="checkbox" id="enabled" checked>
+      <label for="enabled" style="margin:0">Enable API capture on all pages</label>
+    </div>
+    <div class="row">
+      <label for="maxCaptures" style="flex:1">Max captures to keep</label>
+      <input type="number" id="maxCaptures" min="100" max="10000" value="2000" style="width:100px">
+    </div>
+    <p class="hint">Oldest entries are removed when limit is reached.</p>
+  </section>
+  <section>
+    <h2>Exclude domains</h2>
+    <textarea id="excludeDomains" placeholder="google.com&#10;facebook.com&#10;example.org"></textarea>
+    <p class="hint">One domain per line. API calls from these origins will not be saved.</p>
+  </section>
+  <section>
+    <h2>Export</h2>
+    <div class="row">
+      <input type="radio" name="exportFormat" id="fmtYml" value="yml" checked>
+      <label for="fmtYml" style="margin:0">YAML (.yml)</label>
+    </div>
+    <div class="row">
+      <input type="radio" name="exportFormat" id="fmtJson" value="json">
+      <label for="fmtJson" style="margin:0">JSON (.json)</label>
+    </div>
+  </section>
+  <button id="save">Save settings</button>
+  <p class="save-status" id="saveStatus"></p>
+  <script src="options.js"></script>
+</body>
+</html>
